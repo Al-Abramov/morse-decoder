@@ -37,8 +37,18 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
+const morseNumbers = {
+    '10': '.',
+    '11': '-',
+    '00': '',
+    "**": ' ',
+}
+
+
 function decode(expr) {
-    // write your solution here
+    const charNumbers = expr.match(/(.{10})/g);
+
+  return charNumbers.map(numbers => numbers.match(/(.{1,2})/g).map(number => morseNumbers[number]).join('')).map(word => MORSE_TABLE[word]).map(char => char ? char : " ").join(''); 
 }
 
 module.exports = {
